@@ -47,38 +47,72 @@ These datasets would be merged and aggregated in order to work more efficiently 
 
 I conducted the following steps to allow for a smoother analysis process:
 
+1. First, I performed a left merge between recipes and interactions so that every recipe appears,
+even if it has no corresponding user rating yet.
+
+
+2. In the raw interactions file, a “rating” of 0 might signify “no rating given,” as it is not possible to give a rating of 0 on any platform. Due to this, I replaced all O's in the `rating` column with `np.nan`
+
+
+3. I then grouped the resulting dataset by the recipe’s `id`, then compute the mean of the `rating` column. This produced a Series named “avg_rating” whose index is the recipe id.
+
+
+4. Following this, I merged the average‐rating Series back into the original recipes DataFrame using a left merge so that recipes with no ratings receive a NaN for avg_rating.
+
+
+5. After this, I converted all `nutrition` columns into six separate numeric columns: `calories`, `fat_PDV`, `sugar_PDV`, `sodium_PDV`,
+       `protein_PDV`, `saturated_fat_PDV`, `carbohydrates_PDV`, each corresponding to an entry in the original `nutrition`, so that later on I could:  
+   - Compute descriptive statistics easily.  
+   - Efficiently run correlation tests.  
+   - Fit regression models in scikit-learn.
+
+6. I dropped any recipe with missing nutrient values, ensuring that no `NaN` values would break our t-tests or model-fitting routines. This was done to simplify our code and did not materially affect the results.
+
+7. Left `avg_rating` and textual fields untouched**, so we still have full context for each recipe .
+
+8. Lastly, I dropped the `ingredients`, `steps`,`description` and `tags` columns as these are very text-heavy columns and not relevant in my analysis, seeing as we already have the nutritional contents of the dish. Though the `tags` column provides some significant insight I removed it because they are not relevant in the sense of my specific question and some information from them can be gotten from other columns in the dataset.
+
+By the end of these cleaning steps, we have a fully numeric, complete dataset that can be fed directly into visualizations, statistics, and predictive models—maximizing reproducibility and ensuring no hidden `NaN` values distort our findings. The final dataframe has the following columns:
+
+
+| Column               | Description                                                                                                                       |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `name`               | The title of the recipe                                                                                                           |
+| `id`                 | Unique identifier for each recipe                                                                                                  |
+| `minutes`            | Estimated time (in minutes) required to prepare and cook the recipe                                                               |
+| `contributor_id`     | User ID of the individual who submitted or authored the recipe                                                                     |
+| `submitted`          | Date when the recipe was originally submitted to the platform (YYYY-MM-DD)                                                         |
+| `n_steps`            | Number of instructional steps in the recipe                                                                                        |
+| `n_ingredients`      | Number of individual ingredients in the recipe                                                                                      |
+| `avg_rating`         | Mean star rating for each recipe, computed by averaging all user ratings; NaN if no ratings exist                                  |
+| `calories`           | Number of calories per serving (parsed from the nutrition information)                                                              |
+| `fat_PDV`            | Percent Daily Value of total fat (parsed from the nutrition information)                                                            |
+| `sugar_PDV`          | Percent Daily Value of sugar (parsed from the nutrition information)                                                                |
+| `sodium_PDV`         | Percent Daily Value of sodium (parsed from the nutrition information)                                                               |
+| `protein_PDV`        | Percent Daily Value of protein (parsed from the nutrition information)                                                              |
+| `saturated_fat_PDV`  | Percent Daily Value of saturated fat (parsed from the nutrition information)                                                        |
+| `carbohydrates_PDV`  | Percent Daily Value of carbohydrates (parsed from the nutrition information)                                                        |
+
+
+
+This dataset consists of 83781 and 15 columns, with the head of the dataset displayed below:
+
+| name                              | id     | minutes | contributor_id | submitted   | n_steps | n_ingredients | avg_rating | calories | fat_PDV | sugar_PDV | sodium_PDV | protein_PDV | saturated_fat_PDV | carbohydrates_PDV |
+| --------------------------------- | ------ | ------- | -------------- | ----------- | ------- | ------------- | ---------- | -------- | ------- | --------- | ---------- | ----------- | ----------------- | ----------------- |
+| 1 brownies in the world best ever | 333281 | 40      | 985201         | 2008-10-27  | 10      | 9             | 4.0        | 138.4    | 10.0    | 50.0      | 3.0        | 3.0         | 19.0              | 6.0               |
+| 1 in canada chocolate chip cookies| 453467 | 45      | 1848091        | 2011-04-11  | 12      | 11            | 5.0        | 595.1    | 46.0    | 211.0     | 22.0       | 13.0        | 51.0              | 26.0              |
+| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | 6       | 9             | 5.0        | 194.8    | 20.0    | 6.0       | 32.0       | 22.0        | 36.0              | 3.0               |
+| millionaire pound cake            | 286009 | 120     | 461724         | 2008-02-12  | 7       | 7             | 5.0        | 878.3    | 63.0    | 326.0     | 13.0       | 20.0        | 123.0             | 39.0              |
+| 2000 meatloaf                     | 475785 | 90      | 2202916        | 2012-03-06  | 17      | 13            | 5.0        | 267.0    | 30.0    | 12.0      | 12.0       | 29.0        | 48.0              | 2.0               |
 
 
 
 
 
 
+                                        
 
 
-
-
-
-
-I've merged these two datasets and grouped the columns by their `recipe_id`  to produce the final dataset `recipes_with_avg` which contains the following columns:
-
-| Column           | Description                                                                                                                                                                       |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`           | The title of the recipe (e.g., “Classic Chicken Alfredo”).                                                                                                                        |
-| `id`             | Unique identifier for each recipe (matches `id` in the original `RAW_recipes.csv`).                                                                                                |
-| `minutes`        | Estimated time (in minutes) required to prepare and cook the recipe.                                                                                                              |
-| `contributor_id` | User ID of the individual who submitted or authored the recipe.                                                                                                                   |
-| `submitted`      | Date when the recipe was originally submitted to the platform (formatted as YYYY-MM-DD).                                                                                           |
-| `tags`           | Comma- or pipe-separated list of Food.com tags associated with the recipe (e.g., “easy”, “dinner”, “vegetarian”, “gluten-free”).                                                  |
-| `nutrition`      | Original nutrition string, e.g. `"250 calories | 15% DV fat | 10% DV sugar | 8% DV sodium | 20% DV protein | 5% DV saturated fat | 30% DV carbohydrates"`. Parsed later into numeric fields. |
-| `n_steps`        | Number of instructional steps in the recipe (the count of individual directions).                                                                                                 |
-| `steps`          | Full text of each cooking step, concatenated in order (e.g., “1. Preheat oven to 375°F. 2. Season chicken… 3. Bake for 25 minutes…”).                                              |
-| `description`    | User-provided description or summary of the recipe (often includes serving suggestions or background).                                                                             |
-| `ingredients`    | List (or string) of ingredients required for the recipe (e.g., `"2 cups flour, 1 cup sugar, 3 eggs, ½ cup milk"`).                                                                 |
-| `n_ingredients`  | Number of individual ingredients in the recipe (integer count).                                                                                                                   |
-| `avg_rating`     | The mean star rating (floating point) for each recipe, computed by averaging all user ratings from `interactions.csv` (range 1.0–5.0).                                            |
-
-
-This dataset would be used at different levels of the project
 
 
 
