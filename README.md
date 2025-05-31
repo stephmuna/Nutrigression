@@ -1,21 +1,3 @@
-<style>
-  /* Darken the banner title and subtitle */
-  .site-title, .site-description {
-    color: #222222 !important;
-  }
-  /* Make all regular paragraph text darker */
-  body, 
-  .markdown-body p, 
-  .markdown-body li {
-    color: #333333 !important;
-  }
-  /* Ensure code “pills” (inline code) remain legible */
-  .markdown-body code {
-    background-color: #f4f4f4 !important;
-    color: #d6336c !important; /* or any color you like */
-  }
-</style>
-
 # Nutrigression : Recipe Reviews and Nutrition Analysis
 Author: Munachimso Ndubisi
 
