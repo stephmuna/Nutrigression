@@ -4,6 +4,8 @@ plugins:
 
 plugins:
   - jekyll-titles-from-headings
+
+title: Nutrigression: Recipe Reviews and Nutrition Analysis 🍗🥚🥜
   
 titles_from_headings:
   enabled:     true
