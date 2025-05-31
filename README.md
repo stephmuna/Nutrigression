@@ -7,7 +7,7 @@ In recent times, tons of people, specifically young people have been trying to s
 > What different nutritional components have an effect on rating?, What nutritional profiles have the best rating on average - foods deemed as healthy or more of those considered 'junk'
 
 This is relevant to discover, to some extent, the extent of the tradeoffs between health and taste.
-I've also seen a recent spike in companies that are focused on providing prepped meals such as [FactorMeals](www.factormeals), [HelloFresh](www.hellofresh) and many others. This analysis could also provide insights for them into what nutritional components are valued by consumers in order to facilitate modification of meal kits to increase sales
+I've also seen a recent spike in companies that are focused on providing prepped meals such as [FactorMeals](https://www.factormeals.com/), [HelloFresh](https://www.hellofresh.com/) and many others. This analysis could also provide insights for them into what nutritional components are valued by consumers in order to facilitate modification of meal kits to increase sales
 
 
 I am working with two relevant datasets with data from the [food](https://www.food.com/) website: 
