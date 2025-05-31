@@ -110,6 +110,13 @@ This dataset consists of 83781 and 15 columns, with the head of the dataset disp
 ### Univariate Analysis
 I decided to examine the distribution of ratings in the dataset just to get a feel of the general spread of the data
 
+<iframe
+  src="assets/rating_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
                                         
 
