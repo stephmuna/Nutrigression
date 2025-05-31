@@ -39,6 +39,22 @@ I am working with two relevant datasets with data from the [food](https://www.fo
 | `rating`    | Rating given      |
 | `review`    | Review text       |
 
+These datasets would be merged and aggregated in order to work more efficiently with them. I will also need to have a seperate column for each nutritional component as that is the primary focus of my question.
+
+
+
+## Data Cleaning and Exploratory Data Analysis
+
+I conducted the following steps to allow for a smoother analysis process:
+
+
+
+
+
+
+
+
+
 
 
 
