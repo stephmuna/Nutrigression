@@ -97,13 +97,13 @@ By the end of these cleaning steps, we have a fully numeric, complete dataset th
 
 This dataset consists of 83781 and 15 columns, with the head of the dataset displayed below:
 
-| name                              | id     | minutes | contributor_id | submitted   | n_steps | n_ingredients | avg_rating | calories | fat_PDV | sugar_PDV | sodium_PDV | protein_PDV | saturated_fat_PDV | carbohydrates_PDV |
-| --------------------------------- | ------ | ------- | -------------- | ----------- | ------- | ------------- | ---------- | -------- | ------- | --------- | ---------- | ----------- | ----------------- | ----------------- |
-| 1 brownies in the world best ever | 333281 | 40      | 985201         | 2008-10-27  | 10      | 9             | 4.0        | 138.4    | 10.0    | 50.0      | 3.0        | 3.0         | 19.0              | 6.0               |
-| 1 in canada chocolate chip cookies| 453467 | 45      | 1848091        | 2011-04-11  | 12      | 11            | 5.0        | 595.1    | 46.0    | 211.0     | 22.0       | 13.0        | 51.0              | 26.0              |
-| 412 broccoli casserole            | 306168 | 40      | 50969          | 2008-05-30  | 6       | 9             | 5.0        | 194.8    | 20.0    | 6.0       | 32.0       | 22.0        | 36.0              | 3.0               |
-| millionaire pound cake            | 286009 | 120     | 461724         | 2008-02-12  | 7       | 7             | 5.0        | 878.3    | 63.0    | 326.0     | 13.0       | 20.0        | 123.0             | 39.0              |
-| 2000 meatloaf                     | 475785 | 90      | 2202916        | 2012-03-06  | 17      | 13            | 5.0        | 267.0    | 30.0    | 12.0      | 12.0       | 29.0        | 48.0              | 2.0               |
+| name                                 |     id |   minutes |   contributor_id | submitted   |   n_steps |   n_ingredients |   avg_rating |   calories |   fat_PDV |   sugar_PDV |   sodium_PDV |   protein_PDV |   saturated_fat_PDV |   carbohydrates_PDV |
+|:-------------------------------------|-------:|----------:|-----------------:|:------------|----------:|----------------:|-------------:|-----------:|----------:|------------:|-------------:|--------------:|--------------------:|--------------------:|
+| 1 brownies in the world    best ever | 333281 |        40 |           985201 | 2008-10-27  |        10 |               9 |            4 |      138.4 |        10 |          50 |            3 |             3 |                  19 |                   6 |
+| 1 in canada chocolate chip cookies   | 453467 |        45 |          1848091 | 2011-04-11  |        12 |              11 |            5 |      595.1 |        46 |         211 |           22 |            13 |                  51 |                  26 |
+| 412 broccoli casserole               | 306168 |        40 |            50969 | 2008-05-30  |         6 |               9 |            5 |      194.8 |        20 |           6 |           32 |            22 |                  36 |                   3 |
+| millionaire pound cake               | 286009 |       120 |           461724 | 2008-02-12  |         7 |               7 |            5 |      878.3 |        63 |         326 |           13 |            20 |                 123 |                  39 |
+| 2000 meatloaf                        | 475785 |        90 |          2202916 | 2012-03-06  |        17 |              13 |            5 |      267   |        30 |          12 |           12 |            29 |                  48 |                   2 |
 
 
 
