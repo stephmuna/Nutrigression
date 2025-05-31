@@ -1,4 +1,16 @@
 # Nutrigression : Recipe Reviews and Nutrition Analysis
+Author: Munachimso Ndubisi
+
+## Introduction
+This project aims to understand the relationship between the nutritional components (in this case: calories, fat, sugar, protein, saturated fat and carbohydrates) and their average ratings given by real users. We have two relevant datasets from the [food](https://www.food.com/) website:
+
+1. `RAW_recipes.csv`(contains one row per recipe, including a “nutrition” string that lists calories, percent daily‐value of fat, sugar, protein, etc.).
+
+2. `interactions.csv` (contains one row per user‐recipe interaction, including a star rating between 1–5 and a recipe_id that links back to RAW_recipes.csv).
+
+
+
+
 
 
 
