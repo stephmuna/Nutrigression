@@ -151,6 +151,30 @@ The only column with significant amount of missing values is the avg_rating colu
 However, the ratings could also be dependent on the time the recipe was submitted as newer recipes may not have had the oppurtunity to be rated. I will also investigate the `minutes` column too see if the missingness of the `avg_rating` column is dependent on this
 
 
+### Hypothesis Testing
+
+From bivariate analysis, I observed a positive relationship between calories and average ratings which was likely due to outliers.
+Upon further investigation, I found that the observed average rating was higher on average for low calorie recipes than high_calorie recipes. As I plan on using `calories` in my predictive model, it is important for me to see if there is statistical significance between the calories a recipe contains and its average rating. This led me to conduct the following hypothesis test:
+
+> Null hypothesis (H~0): There is no difference in average rating between recipes with higher calories and those with lower calories
+> Alternative hypothesis (H~1): There is a difference in average rating between recipes with higher calories and those with lower calories
+
+The test statistic I used for my hypothesis test was the absolute difference in meeans between higher calorie recipes and lower calorie recipes. The test was a two sided (non-directional) test 
+
+For the hypothesis test, I measured the observed difference between high calorie meals and low meal calorie meals, using the median calorie count as the threshold for classification due to the right skew of the distribution of the `calories` column.
+
+I performed 10,000 random permutation of the `avg_rating`'s and the results were as follows:
+
+I obtained a p_value of 0.0642 and the following distribution of permutated differences
+
+<iframe
+  src="assets/hypothesis_test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p_value of 0.0642, means that at the 5% significance level, I fail to reject the null hypothesis. Meaning that the differences arent statistically significant and the difference in average_ratings could be as a result of chance. However, this result is marginally conclusive due to how close it is to the 5% significance level and a more lenient significance level such as the 10% significance level would have posed the difference as statistically significant.
 
 
 
