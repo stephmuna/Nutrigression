@@ -157,6 +157,7 @@ From bivariate analysis, I observed a positive relationship between calories and
 Upon further investigation, I found that the observed average rating was higher on average for low calorie recipes than high_calorie recipes. As I plan on using `calories` in my predictive model, it is important for me to see if there is statistical significance between the calories a recipe contains and its average rating. This led me to conduct the following hypothesis test:
 
 > Null hypothesis (H<sub>0</sub>): There is no difference in average rating between recipes with higher calories and those with lower calories
+
 > Alternative hypothesis (H<sub>1</sub>): There is a difference in average rating between recipes with higher calories and those with lower calories
 
 The test statistic I used for my hypothesis test was the absolute difference in meeans between higher calorie recipes and lower calorie recipes. The test was a two sided (non-directional) test 
