@@ -66,11 +66,10 @@ even if it has no corresponding user rating yet.
    - Efficiently run correlation tests.  
    - Fit regression models in scikit-learn.
 
-6. I dropped any recipe with missing nutrient values, ensuring that no `NaN` values would break our t-tests or model-fitting routines. This was done to simplify our code and did not materially affect the results.
 
-7. Left `avg_rating` and textual fields untouched**, so we still have full context for each recipe .
+6. Consequently, I dropped the `ingredients`, `steps`,`description` and `tags` columns as these are very text-heavy columns and not relevant in my analysis, seeing as we already have the nutritional contents of the dish. Though the `tags` column provides some significant insight I removed it because they are not relevant in the sense of my specific question and some information from them can be gotten from other columns in the dataset.
 
-8. Lastly, I dropped the `ingredients`, `steps`,`description` and `tags` columns as these are very text-heavy columns and not relevant in my analysis, seeing as we already have the nutritional contents of the dish. Though the `tags` column provides some significant insight I removed it because they are not relevant in the sense of my specific question and some information from them can be gotten from other columns in the dataset.
+7. Finally, I converted the `submitted` column to datetime obejct to enable efficient analysis
 
 By the end of these cleaning steps, we have a fully numeric, complete dataset that can be fed directly into visualizations, statistics, and predictive models—maximizing reproducibility and ensuring no hidden `NaN` values distort our findings. The final dataframe has the following columns:
 
@@ -119,7 +118,37 @@ I decided to examine the distribution of ratings in the dataset just to get a fe
 
 
                                         
+### Interesting Aggregates
 
+I decided to examine how ratings differ at different levels of protein( % DV) and calories. I prepared a pivot table containing `avg_rating` at different intersections of protein and calorie levels.
+
+| calorie_bucket   |   protein Q1 (Low) |   protein Q2 |   protein Q3 |    protein Q4 (High) |
+|:-----------------|-------------------:|-------------:|-------------:|---------------------:|
+| LowCal           |            4.65127 |      4.61956 |      4.59528 |              4.61022 |
+| MedCal           |            4.65329 |      4.63716 |      4.62176 |              4.60198 |
+| HighCal          |            4.62656 |      4.62643 |      4.65185 |              4.61192 |
+
+From this aggregation, we can see that there is not a significant difference in ratings at any extremes, but recipes with medium calorie level and low protein levels have the highest average ratings. On the other hand, recipes with low calorie levels and moderate protein levels have the lowest avergare ratings.
+
+I also decided to examine how the ratings differ at different recipy complexities. In this case I will use the Number of steps (`n_steps`) and the number of ingredients (`n_ingredients`) the recipe requires to determine the complexity.
+
+| steps_bin   |   Few Ingredients |   Medium Ingredients |   Many Ingredients |
+|:------------|------------------:|---------------------:|-------------------:|
+| Few Steps   |           4.64488 |              4.60263 |            4.63114 |
+| Med Steps   |           4.62711 |              4.60662 |            4.62098 |
+| Many Steps  |           4.62545 |              4.62804 |            4.63069 |
+
+There is also no significance in average ratings at different complexities here, but we can see that less complex recipes (recipes with few ingredients and steps) have the highest average rating.
+
+
+
+## Assesment of Missingness 
+
+### NMAR Ananlysis
+The only column with significant amount of missing values is the avg_rating column. This average rating column could be NMAR as a recipe could not have ratings because a recipe could be unrated because of the actual quality of the recipe (hence dependent on the rating itself) and may not be dependent on other factors from the dataset. The avg_rating column may also be missing as users may not feel the significance of leaving a rating on the recipe and may try it out without rating . 
+
+### Missingness Dependency
+However, the ratings could also be dependent on the time the recipe was submitted as newer recipes may not have had the oppurtunity to be rated. I will also investigate the `minutes` column too see if the missingness of the `avg_rating` column is dependent on this
 
 
 
