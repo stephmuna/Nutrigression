@@ -334,8 +334,6 @@ I also obtained the following confusion matrix:
 
 Compared to the baseline matrix, the final model correctly classifies 2342 low ratings (up from 1812) and cuts low→high errors by 530, boosting recall for the low-rating class; although high→low errors rise slightly
 
-### Fairness Analysis
-
 ## Fairness Analysis
 
 For my fairness analysis, I evaluated whether my final model’s precision differs between recipes with low protein values and recipes with high values, using the median as a cutoff due to the skew of the protein distribution
