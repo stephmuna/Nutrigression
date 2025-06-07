@@ -152,10 +152,7 @@ Here we can see that there is a somewhat positive relationship between protein a
 From this, we can see that both protein and calories have some kind of positive relationship between average ratings, however the relationships are not so strong , probably because of the lack of low-rated recipes in or dataset.
 Both scatter plots show a cluster of datapoints at higher average rating levels
 
-
-
-
-                                        
+                                       
 ### Interesting Aggregates
 
 I decided to examine how ratings differ at different levels of protein( % DV) and calories. I prepared a pivot table containing `avg_rating` at different intersections of protein and calorie levels.
@@ -179,11 +176,10 @@ I also decided to examine how the ratings differ at different recipy complexitie
 There is also no significance in average ratings at different complexities here, but we can see that less complex recipes (recipes with few ingredients and steps) have the highest average rating.
 
 
-
 ## Assesment of Missingness 
 
 ### NMAR Ananlysis
-The only column with significant amount of missing values is the avg_rating column. This average rating column could be NMAR as a recipe could not have ratings because a recipe could be unrated because of the actual quality of the recipe (hence dependent on the rating itself) and may not be dependent on other factors from the dataset. The avg_rating column may also be missing as users may not feel the significance of leaving a rating on the recipe and may try it out without rating . 
+The only column with significant amount of missing values is the `avg_rating` column. This average rating column could be NMAR as a recipe could not have ratings because a recipe could be unrated because of the actual quality of the recipe (hence dependent on the rating itself) and may not be dependent on other factors from the dataset. The avg_rating column may also be missing as users may not feel the significance of leaving a rating on the recipe and may try it out without rating . 
 
 ### Missingness Dependency
 However, the ratings could also be dependent on the time the recipe was submitted as newer recipes may not have had the oppurtunity to be rated. I will also investigate the `minutes` column too see if the missingness of the `avg_rating` column is dependent on this.
@@ -361,7 +357,6 @@ I observed a test statistic of −0.004 (Precision_X = 0.694, Precision_Y = 0.69
   height="600"
   frameborder="0"
 ></iframe>
-
 
 From the permutution test we see that the test has a p-value of 0.3476.
 At the 5% significance level, Because p = 0.3476 > 0.05, I fail to reject H₀ and conclude there is no evidence that precision differs between the two protein groups. Therefore, my model is fair
