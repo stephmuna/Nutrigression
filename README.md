@@ -143,7 +143,7 @@ For my bivariate analysis, I wanted to examine the relationship between protein 
 Here we can see that there is a somewhat positive relationship between protein and avarage rating but I would like to cross examine this with the relationship between calories and recipe rating, simply to see which has a stronger correlation to `avg_rating`.
 
 <iframe
-  src="assets/calXratinghtml"
+  src="assets/calXrating.html"
   width="800"
   height="600"
   frameborder="0"
@@ -247,24 +247,9 @@ Because p = 0.20 > 0.05, we fail to reject the MCAR assumption. There is no evid
 
 ---
 
-#### Interactive Visualization
-
-Below is an embedded Plotly histogram showing the permutation distribution of Δ (grey bars) and the observed Δ_obs (red dashed line).
-
-    <div id="protein-missingness-plot"></div>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script>
-      // Replace `fig` with the actual figure JSON you exported from Plotly
-      var fig = {/* your Plotly figure JSON here */};
-      Plotly.newPlot('protein-missingness-plot', fig.data, fig.layout);
-    </script>
-
-
-
-
 ### Hypothesis Testing
 
-From bivariate analysis, I observed a positive relationship between calories and average ratings which was likely due to outliers.
+From my bivariate analysis, I observed a positive relationship between calories and average ratings which was likely due to outliers.
 Upon further investigation, I found that the observed average rating was higher on average for low-calorie recipes than high-calorie recipes. As I plan on using `calories` in my predictive model, it is important for me to see if there is statistical significance between the calories a recipe contains and its average rating. This led me to conduct the following hypothesis test:
 
 > Null hypothesis (H<sub>0</sub>): There is no difference in average rating between recipes with higher calories and those with lower calories
@@ -296,7 +281,7 @@ To address my prediction problem I will be using different classifiers as I am t
 I chose the cutoff point of 4.6 because I believe it accurately represents my data, with 4.6 being the center of my data ,a rating of below 4.5 would represent under-performance in the distribution. I chose this problem because I feel individuals would be more concerned with finding high rated objects than a precise rating.I plan on doing this with only data available to us at the time a recipe is posted, which is all the data in the recipe dataset excluding the `avg-rating` column ofcourse as this is the prediction column. I have also seen correlation (shown in my bivariate analysis) between average rating and nutritional columns in my dataset : specifically `calorie` and `protein_PDV`. 
 
 I plan on improving my baseline model by using other columns in my dataset, mainly the other nutritional columns in my dataset. These columns would be as features for building, combined with using logistic regression as it is more effective for a simple binary classification. I will aslo perform hyperparameter tuning on the logistic regression hyperparameters using 5-fold cross-validation and examing a confusion matrix to ensure low number of false positives and false negatives.
-The performance of my model would be measured on the F1-score rather than the accuracy, as the F1 because the data is heavily skewed/ imperfectly balanced. From our univariate analysis, we can see that the highly-rated bucket contains most of the data in our dataset, so the F1-score would better measure the model's performance. The F1 score is a better representation of classification  into smaller groups than simple model accuracy.
+The performance of my model would be measured on the F1-score rather than the accuracy, as the F1 because the data is heavily skewed/ imperfectly balanced. From our univariate analysis, we can see that the highly-rated bucket contains most of the data in our dataset, so the F1-score would better measure the model's performance. The F1 score is a better representation of classification into smaller groups than simple model accuracy.
 
 
 ### Baseline Model
